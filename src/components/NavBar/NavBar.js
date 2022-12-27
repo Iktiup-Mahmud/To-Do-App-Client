@@ -30,18 +30,10 @@ const NavBar = () => {
                 </div>
                 <Navbar.Collapse>
                     <Link to='/home' active="true">Home</Link>
-                    <Navbar.Link href="/navbars">
-                        About
-                    </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        Services
-                    </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        Pricing
-                    </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        Contact
-                    </Navbar.Link>
+                    <Link to='/add-task' >Add Task</Link>
+                    <Link to='/my-tasks' >My Tasks</Link>
+                    <Link to='/completed-tasks' >Completed Tasks</Link>
+                    
                 </Navbar.Collapse>
             </Navbar>
         </div>

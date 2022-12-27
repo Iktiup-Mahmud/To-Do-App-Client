@@ -1,5 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddTask from "../../components/AddTask/AddTask";
+import CompletedTasks from "../../components/CompletedTasks/CompletedTasks";
 import Home from "../../components/Home/Home";
+import MyTasks from "../../components/MyTasks/MyTasks";
 import Main from "../../layouts/Main";
 
 export const router = createBrowserRouter([
@@ -12,9 +15,21 @@ export const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/',
+                path: '/home',
                 element: <Home></Home>
-            }
+            },
+            {
+                path: '/add-task',
+                element: <AddTask></AddTask>
+            },
+            {
+                path: '/my-tasks',
+                element: <MyTasks></MyTasks>
+            },
+            {
+                path: '/completed-tasks',
+                element: <CompletedTasks></CompletedTasks>
+            },
         ]
     }
 ])
