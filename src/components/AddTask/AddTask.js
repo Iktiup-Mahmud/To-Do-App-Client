@@ -7,10 +7,12 @@ const AddTask = () => {
 
         const form = e.target
         const name = form.name.value
+        const image = form.img.files[0]
         const description = form.description.value
 
         const data = {
             name,
+            image,
             description
         }
 
@@ -18,12 +20,14 @@ const AddTask = () => {
     }
 
     return (
-            <form onSubmit={handelSubmit} className="flex flex-col gap-4 mx-36">
+            <form onSubmit={handelSubmit} className="flex flex-col gap-4 lg:mx-40 md:mx-16 mx-10 ">
                 <h1 className='text-xl font-bold'>Add Task</h1>
+
+                {/* name input */}
                 <div>
                     <div className="mb-2 block text-left">
                         <Label
-                            htmlFor="email1"
+                            htmlFor=""
                             value="Task Name"
                             className=''
                         />
@@ -36,6 +40,26 @@ const AddTask = () => {
                         required={true}
                     />
                 </div>
+
+                {/* img input */}
+                <div>
+                    <div className="mb-2 block text-left">
+                        <Label
+                            htmlFor="email1"
+                            value="Image"
+                            className=''
+                        />
+                    </div>
+                    <TextInput
+                        name='img'
+                        id="email1"
+                        type="file"
+                        placeholder="Select Image"
+                        required={true}
+                    />
+                </div>
+
+                {/* description input */}
             <div id="textarea">
                 <div className="mb-2 block text-left">
                     <Label
@@ -51,6 +75,8 @@ const AddTask = () => {
                     rows={6}
                 />
             </div>
+
+            {/* button submit */}
                 <Button type="submit" className='' color="purple"> 
                     Submit
                 </Button>
