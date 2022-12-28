@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
-        <div>
             <Navbar
                 fluid={true}
                 rounded={true}
+                className=""
             >
                 <Navbar.Brand href="https://flowbite.com/">
                     <img
@@ -28,15 +28,15 @@ const NavBar = () => {
                     </Dropdown>
                     <Navbar.Toggle />
                 </div>
+
                 <Navbar.Collapse>
-                    <Link to='/home' active="true">Home</Link>
+                    {/* <Link to='/home' active="true">Home</Link> */}
                     <Link to='/add-task' >Add Task</Link>
                     <Link to='/my-tasks' >My Tasks</Link>
-                    <Link to='/completed-tasks' >Completed Tasks</Link>
+                    <Link to='/completed-tasks'>Completed Tasks</Link>
                     
                 </Navbar.Collapse>
             </Navbar>
-        </div>
     );
 };
 
