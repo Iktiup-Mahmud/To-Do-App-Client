@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const NavBar = () => {
                         alt="Flowbite Logo"
                     />
                     <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                        Flowbite
+                        TO-DO
                     </span>
                 </Navbar.Brand>
                 <div className="flex md:order-2">
@@ -26,6 +26,13 @@ const NavBar = () => {
                         label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
                     >
                     </Dropdown>
+
+                    <Link to='/login' className='ml-3'>
+                        <Button>
+                            Login
+                        </Button>
+                    </Link>
+
                     <Navbar.Toggle />
                 </div>
 
