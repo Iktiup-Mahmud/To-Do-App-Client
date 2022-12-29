@@ -4,6 +4,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { FaGoogle } from "react-icons/fa";
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
 
@@ -24,11 +25,13 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 console.log(user)
+                toast.success('Login successful')
                 form.reset()
             })
             .catch(error => {
                 setError(error.message)
                 console.error(error)
+                toast.error(error.message)
             })
     }
 
@@ -36,8 +39,12 @@ const Login = () => {
         loginProvider(providerGoogle)
             .then(res=> {
                 console.log(res.user)
+                toast.success('Login successful')
             })
-            .catch(err => console.error(err))  
+            .catch(err => {
+                console.error(err)
+                toast.error(err.message)
+            })  
     }
 
     return (

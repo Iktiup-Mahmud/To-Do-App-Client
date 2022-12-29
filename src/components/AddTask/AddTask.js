@@ -1,7 +1,11 @@
 import { Button, Label, Textarea, TextInput } from 'flowbite-react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../context/AuthProvider';
 
 const AddTask = () => {
+    const { user } = useContext(AuthContext)
+
     const handelSubmit = (e) => {
         e.preventDefault()
 
@@ -9,14 +13,42 @@ const AddTask = () => {
         const name = form.name.value
         const image = form.img.files[0]
         const description = form.description.value
+        const userName = user?.displayName
+        const email = user?.email
+        const posted_time = new Date().toDateString()
+        const isCompleted = false
 
-        const data = {
-            name,
-            image,
-            description
-        }
 
-        console.log(data)
+        const imgbbURL = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgbb_key}`
+
+        const formData = new FormData()
+        formData.append('image', image)
+        fetch(imgbbURL, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if(imgData){
+                    const data = {
+                        name,
+                        img: imgData.data.url,
+                        description,
+                        userName,
+                        email,
+                        posted_time,
+                        isCompleted
+                    }
+
+
+                    
+                    console.log(data)
+                }
+            })
+
+
+
+        toast.success('Task added successfully')
     }
 
     return (

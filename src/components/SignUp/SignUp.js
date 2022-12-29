@@ -1,6 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { TextInput } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
@@ -28,10 +29,12 @@ const SignUp = () => {
                     .then(() => {
                         console.log('ok')
                         form.reset()
+                        toast.success('Sign Up successful')
                     })
             })
             .catch(err => {
                 console.error(err.message)
+                toast.error(err.message)
             })
     }
 
@@ -39,8 +42,12 @@ const SignUp = () => {
         loginProvider(providerGoogle)
             .then(res => {
                 console.log(res.user)
+                toast.success('Login successful')
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.error(err)
+                toast.error(err.message)
+            })
     }
     return (
         <div className="max-w-2xl mx-auto mt-10">
