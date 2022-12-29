@@ -16,7 +16,7 @@ const AddTask = () => {
         const userName = user?.displayName
         const email = user?.email
         const posted_time = new Date().toDateString()
-        const isCompleted = false
+        const isCompleted = "false"
 
 
         const imgbbURL = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgbb_key}`
@@ -40,15 +40,27 @@ const AddTask = () => {
                         isCompleted
                     }
 
-
-                    
                     console.log(data)
+
+                    fetch(`${process.env.REACT_APP_server_url}/add-tasks`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            toast.success(`${name} added successfully`)
+                            form.reset()
+                        })
+                        .catch(err => {
+                            console.err(err)
+                            toast.error(err.message)
+                        })
                 }
             })
-
-
-
-        toast.success('Task added successfully')
     }
 
     return (
