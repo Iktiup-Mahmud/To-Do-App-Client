@@ -29,7 +29,7 @@ const AddTask = () => {
         })
             .then(res => res.json())
             .then(imgData => {
-                if(imgData){
+                if(imgData, user?.email){
                     const data = {
                         name,
                         img: imgData.data.url,
@@ -121,9 +121,14 @@ const AddTask = () => {
             </div>
 
             {/* button submit */}
-                <Button type="submit" className='' color="purple"> 
+            <Button type="submit" disabled={ user ? false : true} className='disable' color="purple"> 
                     Submit
                 </Button>
+
+                {
+                    user ? <></> : <p className='text-red-600'>You must need to login or register to submit.</p>
+                }
+
             </form>
     );
 };

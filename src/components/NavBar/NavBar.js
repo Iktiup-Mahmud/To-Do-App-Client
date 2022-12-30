@@ -1,8 +1,19 @@
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext)
+
+    const handelLogout = () => {
+        logOut()
+            .then(res => {
+                console.log('logout successfull')
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
             <Navbar
                 fluid={true}
@@ -10,28 +21,37 @@ const NavBar = () => {
                 className=""
             >
                 <Navbar.Brand href="https://flowbite.com/">
-                    <img
+                    {/* <img
                         src="https://flowbite.com/docs/images/logo.svg"
                         className="mr-3 h-6 sm:h-9"
                         alt="Flowbite Logo"
-                    />
+                    /> */}
                     <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
                         TO-DO
                     </span>
                 </Navbar.Brand>
                 <div className="flex md:order-2">
-                    <Dropdown
+                    {/* <Dropdown
                         arrowIcon={false}
                         inline={true}
                         label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
                     >
-                    </Dropdown>
+                    </Dropdown> */}
 
-                    <Link to='/login' className='ml-3'>
-                        <Button>
-                            Login
-                        </Button>
-                    </Link>
+                    {
+                        user ? 
+                        <Link onClick={handelLogout} className='ml-3'>
+                            <Button gradientDuoTone="purpleToBlue">
+                                Logout
+                            </Button>
+                        </Link>
+                    :
+                        <Link to='/login' className='ml-3'>
+                            <Button gradientDuoTone="purpleToBlue">
+                                Login
+                            </Button>
+                        </Link>
+                    }
 
                     <Navbar.Toggle />
                 </div>

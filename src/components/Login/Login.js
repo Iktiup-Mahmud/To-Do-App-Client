@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { TextInput } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { FaGoogle } from "react-icons/fa";
 import { toast } from 'react-hot-toast';
@@ -11,6 +11,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const { login, loginProvider } = useContext(AuthContext);
     const providerGoogle = new GoogleAuthProvider();
+    const navigate = useNavigate()
 
     const handelSubmit = e => {
         e.preventDefault()
@@ -27,6 +28,7 @@ const Login = () => {
                 console.log(user)
                 toast.success('Login successful')
                 form.reset()
+                navigate('/add-task')
             })
             .catch(error => {
                 setError(error.message)
@@ -40,6 +42,7 @@ const Login = () => {
             .then(res=> {
                 console.log(res.user)
                 toast.success('Login successful')
+                navigate('/add-task')
             })
             .catch(err => {
                 console.error(err)
